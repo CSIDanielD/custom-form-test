@@ -1,34 +1,23 @@
 import {
   AfterContentInit,
-  Component,
   ContentChildren,
-  OnInit,
+  Directive,
   Output,
   QueryList
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { BehaviorSubject } from "rxjs";
 import { CustomFormFieldComponent } from "../custom-form-field/custom-form-field.component";
 
-@Component({
-  selector: "app-custom-form",
-  templateUrl: "./custom-form.component.html",
-  styleUrls: ["./custom-form.component.css"]
-})
-export class CustomFormComponent implements OnInit, AfterContentInit {
+@Directive({ selector: "app-custom-form" })
+export class CustomFormComponent implements AfterContentInit {
   @ContentChildren(CustomFormFieldComponent)
   formFields!: QueryList<CustomFormFieldComponent>;
 
-  public formGroup: FormGroup | null = null;
-
   @Output()
-  public formValueChanges = this.formGroup?.valueChanges;
-
-  @Output()
-  public formStatusChanges = this.formGroup?.statusChanges;
+  public formGroup$ = new BehaviorSubject<FormGroup>(new FormGroup({}));
 
   constructor() {}
-
-  ngOnInit() {}
 
   ngAfterContentInit() {
     this.buildForm();
@@ -45,8 +34,6 @@ export class CustomFormComponent implements OnInit, AfterContentInit {
       });
     });
 
-    this.formGroup = new FormGroup(controls);
-    this.formValueChanges = this.formGroup?.valueChanges;
-    this.formStatusChanges = this.formGroup?.statusChanges;
+    this.formGroup$.next(new FormGroup(controls));
   }
 }
