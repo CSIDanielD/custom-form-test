@@ -1,8 +1,8 @@
-<app-custom-form (formGroup$)="onFormCreated($event)">
-  <app-custom-form-field fieldName="Test" placeHolder="abc"></app-custom-form-field>
-  <app-custom-form-field fieldName="Abcd" placeHolder="1234"></app-custom-form-field>
-  <app-custom-form-field fieldName="Bananas" placeHolder="Yes"></app-custom-form-field>
-  <app-custom-form-field fieldName="Avocados" placeHolder="No"></app-custom-form-field>
-</app-custom-form>
+<app-form-container (formGroup$)="onFormCreated($event)">
+  <app-form-input-field fieldName="Test" placeHolder="abc"></app-form-input-field>
+  <app-form-input-field fieldName="Abcd" placeHolder="1234"></app-form-input-field>
+  <app-form-input-field fieldName="Bananas" placeHolder="Yes"></app-form-input-field>
+  <app-form-input-field fieldName="Avocados" placeHolder="No"></app-form-input-field>
+</app-form-container>
 
 <div>{{formGroup.value | json}}</div>

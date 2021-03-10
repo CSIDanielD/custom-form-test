@@ -1,0 +1,5 @@
+<form [formGroup]="formGroup$ | async">
+  <ng-container *ngFor="let field of formFields">
+    <ng-container *ngTemplateOutlet="field.fieldTemplate"></ng-container>
+  </ng-container>
+</form>
