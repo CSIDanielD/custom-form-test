@@ -3,6 +3,7 @@ import {
   Component,
   ContentChildren,
   OnInit,
+  Output,
   QueryList
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
@@ -19,11 +20,21 @@ export class CustomFormComponent implements OnInit, AfterContentInit {
 
   public formGroup: FormGroup | null = null;
 
+  @Output()
+  public formValueChanges = this.formGroup?.valueChanges;
+
+  @Output()
+  public formStatusChanges = this.formGroup?.statusChanges;
+
   constructor() {}
 
   ngOnInit() {}
 
   ngAfterContentInit() {
+    this.buildForm();
+  }
+
+  buildForm() {
     // Build the FormGroup from composed children.
     let controls: { [fieldName: string]: FormControl } = {};
 
@@ -35,5 +46,7 @@ export class CustomFormComponent implements OnInit, AfterContentInit {
     });
 
     this.formGroup = new FormGroup(controls);
+    this.formValueChanges = this.formGroup?.valueChanges;
+    this.formStatusChanges = this.formGroup?.statusChanges;
   }
 }
