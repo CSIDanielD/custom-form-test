@@ -10,7 +10,7 @@ import { BehaviorSubject } from "rxjs";
 import { CustomFormFieldComponent } from "../custom-form-field/custom-form-field.component";
 
 @Directive({ selector: "app-custom-form" })
-export class CustomFormComponent implements AfterContentInit {
+export class CustomFormDirective implements AfterContentInit {
   @ContentChildren(CustomFormFieldComponent)
   formFields!: QueryList<CustomFormFieldComponent>;
 
