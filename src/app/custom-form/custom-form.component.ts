@@ -5,7 +5,7 @@ import {
   OnInit,
   QueryList
 } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { CustomFormFieldComponent } from "../custom-form-field/custom-form-field.component";
 
 @Component({
@@ -19,21 +19,21 @@ export class CustomFormComponent implements OnInit, AfterContentInit {
 
   public formGroup: FormGroup | null = null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor() {}
 
   ngOnInit() {}
 
   ngAfterContentInit() {
     // Build the FormGroup from composed children.
-    let controls: FormControl[] = [];
+    let controls: { [fieldName: string]: FormControl } = {};
 
     this.formFields.forEach(field => {
-      controls.push(
-        new FormControl({
-          value: field.placeHolder,
-          disabled: field.disabled
-        })
-      );
+      controls[field.fieldName] = new FormControl({
+        value: field.placeHolder,
+        disabled: field.disabled
+      });
     });
+
+    this.formGroup = new FormGroup(controls);
   }
 }
