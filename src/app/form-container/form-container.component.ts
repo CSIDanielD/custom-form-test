@@ -27,6 +27,14 @@ export class FormContainerComponent implements AfterContentInit {
     this.buildForm();
   }
 
+  onChanged(value: any) {
+    console.log("Changed:", value);
+  }
+
+  getFormControl(fieldName: string) {
+    return this.formGroup$.value.get(fieldName);
+  }
+
   buildForm() {
     // Build the FormGroup from composed children.
     let controls: { [fieldName: string]: FormControl } = {};
@@ -36,6 +44,8 @@ export class FormContainerComponent implements AfterContentInit {
         value: field.placeholder,
         disabled: field.disabled
       });
+
+      field.onChange = this.onChanged;
     });
 
     this.formGroup$.next(new FormGroup(controls));

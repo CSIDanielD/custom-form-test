@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output } from "@angular/core";
+import { Component, OnInit, Input, Output, Directive } from "@angular/core";
 import { ControlValueAccessor, NgControl } from "@angular/forms";
-import { BehaviorSubject, Subject } from "rxjs";
+import { Subject } from "rxjs";
 
-@Component({
-  selector: "app-form-value-controller",
-  templateUrl: "./form-value-controller.component.html",
-  styleUrls: ["./form-value-controller.component.css"]
-})
+// @Component({
+//   selector: "app-form-value-controller",
+//   templateUrl: "./form-value-controller.component.html",
+//   styleUrls: ["./form-value-controller.component.css"]
+// })
+@Directive({ selector: "app-form-value-controller" })
 export class FormValueControllerComponent
   implements OnInit, ControlValueAccessor {
   @Input() public ngControl?: NgControl;
@@ -21,11 +22,16 @@ export class FormValueControllerComponent
 
   // We'll expose these registered ControlValueAccessor methods so they can be called by
   // individual field components' DOM events
+
+  // These are designed to be subscribed to by the container as events. The container
+  // will bind these callbacks to the field components.
   @Output()
-  public onChange$ = new Subject<(value: any) => void>();
+  public onChange$ = new Subject<
+    (changeObj: { name: string; value: any }) => void
+  >();
 
   @Output()
-  public onTouched$ = new Subject<() => void>();
+  public onTouched$ = new Subject<(touchedObj: { name: string }) => void>();
 
   constructor() {}
 
