@@ -1,5 +1,9 @@
 <ng-template #fieldTemplate>
-  <div>
-    {{label || fieldName}}: {{value}}
-  </div>
+  <label>{{ label }}</label>
+  <input [type]="type"
+       [placeholder]="placeholder"
+       [value]="value"
+       [disabled]="disabled"
+       (input)="onChange(getHTMLEventValue($event))"
+       (blur)="onTouched()" />
 </ng-template>

@@ -1,8 +1,8 @@
 <app-form-container (formGroup$)="onFormCreated($event)">
-  <app-form-input-field fieldName="Test" placeHolder="abc"></app-form-input-field>
-  <app-form-input-field fieldName="Abcd" placeHolder="1234"></app-form-input-field>
-  <app-form-input-field fieldName="Bananas" placeHolder="Yes"></app-form-input-field>
-  <app-form-input-field fieldName="Avocados" placeHolder="No"></app-form-input-field>
+  <app-form-input-field fieldName="Test" placeholder="abc"></app-form-input-field>
+  <app-form-input-field fieldName="Abcd" placeholder="1234"></app-form-input-field>
+  <app-form-input-field fieldName="Bananas" placeholder="Yes"></app-form-input-field>
+  <app-form-input-field fieldName="Avocados" placeholder="No"></app-form-input-field>
 </app-form-container>
 
 <div>{{formGroup.value | json}}</div>

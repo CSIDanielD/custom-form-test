@@ -8,6 +8,7 @@ import { CustomFormDirective } from "./custom-form/custom-form.directive";
 import { CustomFormFieldComponent } from "./custom-form-field/custom-form-field.component";
 import { FormInputFieldComponent } from './form-input-field/form-input-field.component';
 import { FormContainerComponent } from './form-container/form-container.component';
+import { FormValueControllerComponent } from './form-value-controller/form-value-controller.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
@@ -17,7 +18,8 @@ import { FormContainerComponent } from './form-container/form-container.componen
     CustomFormDirective,
     CustomFormFieldComponent,
     FormInputFieldComponent,
-    FormContainerComponent
+    FormContainerComponent,
+    FormValueControllerComponent
   ],
   bootstrap: [AppComponent]
 })
